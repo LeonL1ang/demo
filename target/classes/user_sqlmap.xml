@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    
+<sqlMap namespace="userDao">
+ 
+  <typeAlias type="wiki.leon.demo.ibatis.pojo.User" alias="user"/> 
+  
+  <resultMap id="userMap" class="user" >  
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="INTEGER" />
+    <result column="password" property="password" jdbcType="INTEGER" />
+    <result column="profile" property="profile" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="head_img" property="headImg" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="datetime" />
+    <result column="update_time" property="updateTime" jdbcType="datetime" />
+    <result column="login_time" property="loginTime" jdbcType="datetime" />
+  </resultMap>  
+    
+  <!-- 获得全查询列表 -->  
+  <select id="selectOne" resultMap="userMap">
+    select * from tb_user where id = #id#
+  </select> 
+  
+  <insert id="insert">
+  	insert into tb_user (email, password , profile, name, head_img, create_time, update_time, login_time)
+  	values(#email#, #password# , #profile#, #name#, #headImg#, #createTime#, #updateTime#, #loginTime#)
+  </insert>
+  
+  <update id="update">
+  	update
+  </update>
+  
+  <select id="selectAll" resultMap="userMap">
+  	select * from tb_user
+  </select>
+  
+  <delete id="deleteById" parameterClass="Integer">
+  	delete from tb_user where id = #id#
+  </delete>
+  
+</sqlMap>  
